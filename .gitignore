@@ -133,5 +133,9 @@ dist
 # import dir
 import
 
+# scratch dir
+scratch
+
 # uploading script 
 upload_to_s3.py
+
