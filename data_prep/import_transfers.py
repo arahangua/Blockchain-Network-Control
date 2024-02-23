@@ -58,4 +58,4 @@ for target in target_symbol:
     target_df = target_df.sort_values(['blockNumber', 'tx_pos'])
     #save it to the local dir
     target_df.to_csv(f'{import_path}/{target}.csv', index=False)
-    
+

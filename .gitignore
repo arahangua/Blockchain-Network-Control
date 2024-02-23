@@ -132,3 +132,6 @@ dist
 
 # import dir
 import
+
+# uploading script 
+upload_to_s3.py
