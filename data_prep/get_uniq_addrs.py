@@ -19,22 +19,22 @@ for tk in tokens:
 
     # binning of transactions 
 
-    # scenario 1. by day
-    bls_in_day = 7200
-    n_chunks = np.floor(tot_dur/bls_in_day) # we will only consider time intervals which are full in duration.
+    # scenario 1. hourly basis
+    bls_for_binning = 7200
+    n_chunks = np.floor(tot_dur/bls_for_binning) # we will only consider time intervals which are full in duration.
 
 
     curr_st_bl = min_bl
     for ii in np.arange(n_chunks):
-        upper_bound = curr_st_bl + bls_in_day
+        upper_bound = curr_st_bl + bls_for_binning
         chunk_df = token_df[token_df['blockNumber'].between(curr_st_bl, upper_bound)]
         curr_st_bl = upper_bound
 
         if (ii==0):
-            all_addrs = pd.concat([token_df['from'], token_df['to']])
+            all_addrs = pd.concat([chunk_df['from'], chunk_df['to']])
             uniq_addrs = all_addrs.unique()
         else:
-            all_addrs = pd.concat([token_df['from'], token_df['to']])
+            all_addrs = pd.concat([chunk_df['from'], chunk_df['to']])
             all_addrs = all_addrs.unique()
             uniq_addrs = np.intersect1d(uniq_addrs, all_addrs)
 

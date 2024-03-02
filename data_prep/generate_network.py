@@ -41,7 +41,8 @@ for ii in np.arange(n_chunks):
 
 # scenario 1. consider real transfer transactions as edge weights for system dynamics matrix (A)
 
-nk_list = []
+nk_list = [] # directed, weighted
+
 for chunk_num, data_df in enumerate(df_list):
     # subset only necessary columns
     data_df = data_df[['from', 'to', 'value']]
@@ -72,8 +73,6 @@ for chunk_num, data_df in enumerate(df_list):
     
     nk_list.append(G)
     print(f'networkit graph was successfully created for the bin size : {bin_size} blocks / chunk: {chunk_num+1}/{len(df_list)}')
-
-
 
 
 
@@ -113,6 +112,8 @@ nk.profiling.Profile.create(nk_list[0], config=config).show() # need to use subs
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.style.use('ggplot')    
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 600
 
 
 
